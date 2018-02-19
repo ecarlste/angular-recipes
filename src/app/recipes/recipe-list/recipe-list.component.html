@@ -6,6 +6,7 @@
 <div class="row">
   <div class="col-xs-12">
     <app-recipe-item *ngFor="let currentRecipe of recipes"
-                     [myRecipe]="currentRecipe">{{ currentRecipe | json }}</app-recipe-item>
+                     [myRecipe]="currentRecipe"
+                     (recipeSelected)="onRecipeSelected(currentRecipe)"></app-recipe-item>
   </div>
 </div>
