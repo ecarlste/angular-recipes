@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Recipe} from './recipe.model';
 
 @Injectable()
@@ -11,10 +11,16 @@ export class RecipeService {
       'https://www.nps.gov/subjects/camping/images/recipe_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false')
   ];
 
+  private _recipeSelected = new EventEmitter<Recipe>();
+
   constructor() { }
 
   get recipes(): Recipe[] {
     return this._recipes;
+  }
+
+  get recipeSelected(): EventEmitter<Recipe> {
+    return this._recipeSelected;
   }
 
 }
