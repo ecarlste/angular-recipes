@@ -8,23 +8,23 @@ import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { HeaderComponent } from './header/header.component';
 import { RecipeService } from './recipes/recipe.service';
-import { RecipesModule } from './recipes/recipes.module';
 import { DataAccessService } from './shared/data-access.service';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    RecipesModule,
     ShoppingListModule,
     SharedModule,
     AuthModule
