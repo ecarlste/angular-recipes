@@ -31,12 +31,9 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  getRecipe(id: number) {
-    return this.recipes[id];
-  }
-
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.notifyRecipesChanged();
   }
 
   addRecipe(recipe: Recipe) {
@@ -46,6 +43,14 @@ export class RecipeService {
 
   private notifyRecipesChanged() {
     this.recipesChanged.next(this.recipes.slice());
+  }
+
+  getRecipe(id: number) {
+    return this.recipes[id];
+  }
+
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.shoppingListService.addIngredients(ingredients);
   }
 
   updateRecipe(index: number, newRecipe: Recipe) {

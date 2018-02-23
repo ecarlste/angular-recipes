@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Response} from '@angular/http';
 import {DataAccessService} from '../shared/data-access.service';
 
 @Component({
@@ -16,5 +17,9 @@ export class HeaderComponent {
           console.log(response);
         }
       );
+  }
+
+  onFetchData() {
+    this.dataAccessService.getRecipes();
   }
 }
