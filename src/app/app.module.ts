@@ -21,6 +21,7 @@ import {HttpModule} from '@angular/http';
 import {DataAccessService} from './shared/data-access.service';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import {AuthService} from './auth/auth.service';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { SignupComponent } from './auth/signup/signup.component';
     HttpModule
   ],
   providers: [
+    AuthService,
     DataAccessService,
     RecipeService,
     ShoppingListService

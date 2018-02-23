@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
 export class AppComponent implements OnInit {
   loadedFeature = 'recipe';
 
-  ngOnInit(): void {
+  ngOnInit() {
     firebase.initializeApp({
       apiKey: 'AIzaSyAT_0dUiTmBaXaDvv1T38DCA2fQryv-bg8',
       authDomain: 'ng-recipe-book-b5cd6.firebaseapp.com'
