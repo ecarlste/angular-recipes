@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Response} from '@angular/http';
 import {DataAccessService} from '../shared/data-access.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,8 @@ import {DataAccessService} from '../shared/data-access.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private dataAccessService: DataAccessService) {}
+  constructor(private dataAccessService: DataAccessService,
+              private authService: AuthService) {}
 
   onSaveData() {
     this.dataAccessService.storeRecipes()
