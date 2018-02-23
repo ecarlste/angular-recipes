@@ -22,6 +22,7 @@ import {DataAccessService} from './shared/data-access.service';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {AuthService} from './auth/auth.service';
+import {AuthGuard} from './auth/auth.guard';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {AuthService} from './auth/auth.service';
   ],
   providers: [
     AuthService,
+    AuthGuard,
     DataAccessService,
     RecipeService,
     ShoppingListService
