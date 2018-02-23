@@ -11,7 +11,10 @@ export class DataAccessService {
   constructor(private http: Http, private recipeService: RecipeService, private authService: AuthService) { }
 
   storeRecipes() {
-    return this.http.put('https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json', this.recipeService.getRecipes());
+    const token = this.authService.getToken();
+
+    return this.http.put('https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json?auth=' + token,
+      this.recipeService.getRecipes());
   }
 
   getRecipes() {
