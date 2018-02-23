@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {RecipeService} from '../recipes/recipe.service';
+import {Recipe} from '../recipes/recipe.model';
 
 @Injectable()
 export class DataAccessService {
@@ -12,13 +13,19 @@ export class DataAccessService {
   }
 
   getRecipes() {
-    return this.http.get('https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json').
-      subscribe(
-      (response: Response) => {
-        const recipes = response.json();
+    return this.http.get('https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json')
+      .map((response: Response) => {
+        const recipes: Recipe[] = response.json();
+        for (const recipe of recipes) {
+          if (!recipe['ingredients']) {
+            recipe['ingredients'] = [];
+          }
+        }
+        return recipes;
+      })
+      .subscribe((recipes: Recipe[]) => {
         this.recipeService.setRecipes(recipes);
-      }
-    );
+      });
   }
 
 }
