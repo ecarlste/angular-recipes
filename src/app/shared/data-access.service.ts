@@ -22,7 +22,10 @@ export class DataAccessService {
   getRecipes() {
     const token = this.authService.getToken();
 
-    this.httpClient.get<Recipe[]>('https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json?auth=' + token)
+    this.httpClient.get<Recipe[]>('https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json?auth=' + token, {
+      observe: 'body',
+      responseType: 'json'
+    })
       .map((recipes) => {
         for (const recipe of recipes) {
           if (!recipe['ingredients']) {
