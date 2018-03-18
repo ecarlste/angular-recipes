@@ -1,7 +1,6 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { AuthService } from '../auth/auth.service';
 import { Recipe } from '../recipes/recipe.model';
 import { RecipeService } from '../recipes/recipe.service';
 
@@ -9,8 +8,7 @@ import { RecipeService } from '../recipes/recipe.service';
 export class DataAccessService {
 
   constructor(private httpClient: HttpClient,
-              private recipeService: RecipeService,
-              private authService: AuthService) { }
+              private recipeService: RecipeService) { }
 
   storeRecipes() {
     const req = new HttpRequest('PUT', 'https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json',
@@ -20,9 +18,7 @@ export class DataAccessService {
   }
 
   getRecipes() {
-    const token = this.authService.getToken();
-
-    this.httpClient.get<Recipe[]>('https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json?auth=' + token, {
+    this.httpClient.get<Recipe[]>('https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json', {
       observe: 'body',
       responseType: 'json'
     })
