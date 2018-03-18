@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { AuthService } from '../auth/auth.service';
@@ -13,10 +13,10 @@ export class DataAccessService {
               private authService: AuthService) { }
 
   storeRecipes() {
-    const token = this.authService.getToken();
+    const req = new HttpRequest('PUT', 'https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json',
+      this.recipeService.getRecipes(), {reportProgress: true});
 
-    return this.httpClient.put('https://ng-recipe-book-b5cd6.firebaseio.com/recipes.json?auth=' + token,
-      this.recipeService.getRecipes());
+    return this.httpClient.request(req);
   }
 
   getRecipes() {

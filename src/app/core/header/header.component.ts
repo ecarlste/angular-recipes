@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {Response} from '@angular/http';
-import {DataAccessService} from '../../shared/data-access.service';
-import {AuthService} from '../../auth/auth.service';
+import { HttpEvent } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { AuthService } from '../../auth/auth.service';
+import { DataAccessService } from '../../shared/data-access.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,7 @@ export class HeaderComponent {
   onSaveData() {
     this.dataAccessService.storeRecipes()
       .subscribe(
-        (response: Response) => {
+        (response: HttpEvent<Object>) => {
           console.log(response);
         }
       );
