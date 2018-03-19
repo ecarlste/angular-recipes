@@ -1,6 +1,6 @@
 import { Ingredient } from '../../shared/ingredient.model';
 import {
-  ADD_INGREDIENT, ADD_INGREDIENTS, DELETE_INGREDIENT, ShoppingListActions, START_EDIT,
+  ADD_INGREDIENT, ADD_INGREDIENTS, DELETE_INGREDIENT, ShoppingListActions, START_EDIT, STOP_EDIT,
   UPDATE_INGREDIENT
 } from './shopping-list.actions';
 
@@ -49,7 +49,9 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
       ingredients[state.editedIngredientIndex] = updatedIngredient;
       return {
         ...state,
-        ingredients: ingredients
+        ingredients: ingredients,
+        editedIngredient: null,
+        editedIngredientIndex: -1
       };
 
     case DELETE_INGREDIENT:
@@ -57,7 +59,9 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
       ingredients.splice(state.editedIngredientIndex, 1);
       return {
         ...state,
-        ingredients: ingredients
+        ingredients: ingredients,
+        editedIngredient: null,
+        editedIngredientIndex: -1
       };
 
     case START_EDIT:
@@ -66,6 +70,13 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         ...state,
         editedIngredient: editedIngredient,
         editedIngredientIndex: action.payload
+      };
+
+    case STOP_EDIT:
+      return {
+        ...state,
+        editedIngredient: null,
+        editedIngredientIndex: -1
       };
 
     default:
