@@ -7,7 +7,6 @@ import { AuthInterceptor } from '../shared/auth.interceptor';
 import { DataAccessService } from '../shared/data-access.service';
 import { LoggingInterceptor } from '../shared/logging.interceptor';
 import { SharedModule } from '../shared/shared.module';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
@@ -24,7 +23,6 @@ import { HomeComponent } from './home/home.component';
     AuthService,
     DataAccessService,
     RecipeService,
-    ShoppingListService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true}
   ],
